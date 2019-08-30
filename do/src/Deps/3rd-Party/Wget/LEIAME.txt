@@ -1,0 +1,14 @@
+Wget
+====
+
+Utilitário de linha de comando para realização de downloads da internet.
+
+Documentação:
+-   https://www.gnu.org/software/wget/
+
+Download:
+-   https://eternallybored.org/misc/wget/
+
+---
+Mar/2017  
+Guga Coder

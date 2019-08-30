@@ -1,0 +1,90 @@
+﻿@rem Uninstall.bat
+@rem 
+@rem Script de desinstalacao de aplicativo.
+@rem 
+@echo off
+
+@rem Codigos de erro do MSI
+@rem Referencia:
+@rem   https://msdn.microsoft.com/en-us/library/windows/desktop/aa376931.aspx
+set ERROR_INSTALL_USEREXIT=1602
+
+set prod=${ProductName}
+set guid=${ProductCode}
+set serv=${ServiceName}
+
+echo.[INFO] Script de desinstalacao de aplicativo:
+echo.[INFO]   ProductName: %prod%
+echo.[INFO]   ProductCode: %guid%
+echo.[INFO]   ServiceName: %serv%
+echo.[INFO] Desinstalando o produto. Isso pode levar um tempo...
+
+:checar_argumentos
+  if "%1" == "/?" goto :help
+  if "%1" == "-h" goto :help
+  if "%1" == "--help" goto :help
+
+:checar_instalacao
+  reg query HKLM\SOFTWARE /e /s /k /f %guid% | findstr /i /c:\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\%guid%
+  if not "%errorlevel%" == "0" (
+    echo.[INFO] O produto nao esta instalado.
+    echo.[INFO] Checando a existencia do servico %serv%...
+    sc query %serv%
+    if not "%errorlevel%" == "0" goto :desregistrar
+    echo.[INFO] Nada a ser feito. O aplicativo %prod% nao esta instalado.
+    pause
+    exit /b 0
+  )
+
+:parar
+  echo.[INFO] Parando o servico %serv%...
+  net stop %serv%
+  
+:desinstalar
+  echo.[INFO] Desinstalando o pacote "%guid%"...
+  start /wait msiexec /uninstall %guid% %*
+  if "%errorlevel%" == "0" goto :desregistrar
+  if "%errorlevel%" == "%ERROR_INSTALL_USEREXIT%" goto :cancelar
+  
+:reparar_e_desinstalar
+  echo.[INFO] A desinstalacao falhou.
+  echo.[INFO] Reparando a instalacao atual para tentar desinstalar novamente...
+  start /wait msiexec /fmspec %guid% %*
+  if "%errorlevel%" == "%ERROR_INSTALL_USEREXIT%" goto :cancelar
+  if not "%errorlevel%" == "0" goto :falhar
+  
+  echo.[INFO] Tentando desinstalar o pacote "%guid%" novamente...
+  start /wait msiexec /uninstall %guid% %*
+  if "%errorlevel%" == "%ERROR_INSTALL_USEREXIT%" goto :cancelar
+  if not "%errorlevel%" == "0" goto :falhar
+  
+:desregistrar
+  echo.[INFO] Removendo registro do servico %serv%...
+  sc delete %serv%
+  
+  echo.[INFO] Aplicativo %prod% desinstalado com sucesso.
+  pause
+  exit /b 0
+  
+:cancelar
+  echo.[INFO] Cancelado pelo usuario.
+  pause
+  exit /b 1
+
+:falhar
+  echo.[INFO] Falhou a tentativa de desinstalar o aplicativo %prod%.
+  pause
+  exit /b 1
+
+:help
+  echo.[INFO] Uso:
+  echo.[INFO]   %0 [ /quiet ] [ /log ARQUIVO]
+  echo.[INFO] Parametros:
+  echo.[INFO]   /?
+  echo.[INFO]     Exibe esta ajuda.
+  echo.[INFO]   /quiet
+  echo.[INFO]     Ativa o modo de instalacao nao assistida.
+  echo.[INFO]     O sistema nao exibe janelas de interacao com usuario e assume o
+  echo.[INFO]     valor padrao para parametros de instalacao.
+  echo.[INFO]   /log ARQUIVO
+  echo.[INFO]     Registra mensagens e erros no arquivo indicado.

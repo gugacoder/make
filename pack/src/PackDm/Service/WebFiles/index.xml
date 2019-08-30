@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="index.xsl"?>
+<Resource>
+  <!--
+    Este XML é apenas um exemplo do XML produzido pelo PackService quando
+    navegando por uma pasta.
+    Apenas para facilitar a construção do XSLT que, este sim, é enviado para
+    o Browser quando solicitado para produzir o HTML final.
+  -->
+  <Name>Grupo</Name>
+  <Path>/Grupo</Path>
+  <Date>2016-06-08T11:04:10-03:00</Date>
+  <Items>
+    <Item>
+      <Name>Artefato</Name>
+      <Path>/Grupo/Artefato</Path>
+      <Date>2016-06-08T11:04:10-03:00</Date>
+      <IsFolder>true</IsFolder>
+      <LengthInBytes>0</LengthInBytes>
+      <Length>0B</Length>
+    </Item>
+    <Item>
+      <Name>Grupo</Name>
+      <Path>/Grupo/Grupo</Path>
+      <Date>2016-06-08T11:04:10-03:00</Date>
+      <IsFolder>true</IsFolder>
+      <LengthInBytes>0</LengthInBytes>
+      <Length>0B</Length>
+    </Item>
+    <Item>
+      <Name>pack.index</Name>
+      <Path>/Grupo/pack.index</Path>
+      <Date>2016-06-08T11:04:10-03:00</Date>
+      <IsFolder>false</IsFolder>
+      <LengthInBytes>93</LengthInBytes>
+      <Length>93B</Length>
+    </Item>
+  </Items>
+</Resource>

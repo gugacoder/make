@@ -1,0 +1,24 @@
+﻿.div-index {
+}
+.div-index .col {
+  padding-right: 20px;
+}
+.div-index .col-name {
+  text-align: left;
+  min-width: 200px;
+}
+.div-index .col-size {
+  text-align: right;
+  min-width: 100px;
+}
+.div-index .col-date {
+  text-align: left;
+}
+.div-index .file {
+}
+.div-index .folder {
+}
+.div-actions {
+  margin-left: 2px;
+  margin-bottom: 20px;
+}

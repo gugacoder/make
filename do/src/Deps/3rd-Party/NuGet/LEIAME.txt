@@ -1,0 +1,14 @@
+NuGet
+=====
+
+Gerenciador de bibliotecas para a plataforma .NET.
+
+Documentação:
+-   https://docs.microsoft.com/en-us/nuget/
+
+Download:
+-   https://www.nuget.org/downloads
+
+---
+Mar/2017  
+Guga Coder

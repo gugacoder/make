@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>{{title}}</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, arial, sans;
+      max-width: 900px;
+      margin: auto;
+      color: #515151;
+      padding-bottom: 50px;
+      font-size: 10pt;
+    }
+
+    div.content {
+      padding: 20px;
+    }
+
+    h6 { font-size: 10pt; }
+    h5 { font-size: 11pt; }
+    h4 { font-size: 12pt; }
+    h3 { font-size: 13pt; }
+    h2 { font-size: 14pt; }
+    h1 { font-size: 15pt; }
+
+    p {
+      text-align: justify;
+    }
+
+    h1 a, h1 a:visited,
+    h2 a, h2 a:visited,
+    h3 a, h3 a:visited,
+    h4 a, h4 a:visited,
+    h5 a, h5 a:visited {
+      color: #515151;
+      text-decoration: none;
+    }
+
+    blockquote {
+      padding-left: 10px;
+      margin-left: 1px;
+      margin-right: 0px;
+      border: 1px solid lightgray;
+      border-left: 3px solid gray;
+      border-radius: 5px;
+      background-color: beige;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    colgroup {
+      display: none;
+    }
+
+    td, th {
+      font-weight: normal;
+      padding: 4px 8px 4px 8px;
+    }
+
+    td {
+      border: 1px solid #eee;
+    }
+
+    li {
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+
+    li>:first-child {
+      margin-top: 0px;
+    }
+
+    dl {
+      margin-left: 40px;
+    }
+
+    dt {
+      display: list-item;
+      list-style: square;
+      text-decoration: underline;
+    }
+
+    dd {
+      margin-left: 0px;
+      margin-bottom: 10px;
+      padding-top: 10px;
+    }
+
+    dd>:first-child {
+      margin-top: 0px;
+    }
+
+    code, pre {
+      font-size: .975em;
+    }
+
+    code {
+    }
+
+    pre code {
+      padding: 0;
+      border: none;
+    }
+
+    pre {
+      padding: 10px;
+      background-color: #eee;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    hr {
+      border: 0px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 0px;
+      margin-top: 20px;
+    }
+
+    .figure {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .vermelho {
+      padding-left: 4px;
+      padding-right: 4px;
+      background-color: #d40000;
+      color: white;
+    }
+
+    #TOC {
+      margin: 30px 0px 20px 20px;
+      float: right;
+      border: 1px solid #eee;
+      background-color: #f8f8f8;
+    }
+
+    #TOC li {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    #TOC>ul {
+      padding: 0px;
+    }
+
+    #TOC>ul>li {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1 id="director.sped">{{title}}</h1>
+    <table>
+      <thead>
+        <tr class="header">
+          <th align="left">Versão</th>
+          <th align="left"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd">
+          <td align="left"><strong>{{revision}}</strong></td>
+          <td align="left"></td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr class="header">
+          <th align="left">Arquivo</th>
+          <th align="left"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{each links as link
+          <tr>
+            <td align="left"><a href="{{link.href}}" download="{{link.name}}">{{link.name}}</a></td>
+            <td align="left">{{link.description}}</td>
+          </tr>
+        }}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

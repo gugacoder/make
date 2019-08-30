@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+#
+# Criando e configurando o usuario do PackDm
+#
+
+adduser --system --home /home/pack-dm --shell /bin/bash --no-create-home pack-dm || true
+usermod -g www-data pack-dm || true
+chown -R pack-dm:www-data /home/pack-dm
+
+#
+# Configurando e inicializando o sistema
+#
+
+bash /home/pack-dm/bin/install.sh
