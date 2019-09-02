@@ -1,7 +1,0 @@
-#!/bin/sh
-set -e
-
-rm -f /etc/init.d/pack-dm
-rm -f /etc/apache2/sites-available/pack-dm
-rm -f /etc/apache2/sites-available/pack-dm.conf
-

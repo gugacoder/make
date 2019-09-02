@@ -1,2 +1,0 @@
-RewriteEngine  on
-RewriteRule ^/teste/(.*) http://localhost:8585/ [P]

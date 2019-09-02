@@ -1,6 +1,0 @@
-#!/bin/sh
-#set -e
-
-bash /home/pack-dm/bin/uninstall.sh
-
-exit 0

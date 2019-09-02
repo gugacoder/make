@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Make": {
+      "commandName": "Project",
+      "commandLineArgs": "upgrade-toolchain"
+    }
+  }
+}

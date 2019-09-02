@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net47;netcoreapp3</TargetFrameworks>
+    <AssemblyName>make</AssemblyName>
+    <PlatformTarget>x64</PlatformTarget>
+    
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <OutputPath>..\..\dist\</OutputPath>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="$(Configuration.StartsWith('linux'))">
+      <PropertyGroup>
+        <DefineConstants>LINUX</DefineConstants>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <DefineConstants>WIN</DefineConstants>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="meta\templates\Setup.html.template" />
+    <EmbeddedResource Include="meta\templates\Uninstall.bat.template" />
+    <EmbeddedResource Include="meta\tools\NuGet\nuget.exe.gz" />
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <EmbeddedResource
+      Include="..\..\dist\net47\win-x64\publish\pack.exe"
+      Link="meta\tools\PackDm\win-x64\pack.exe" />
+    <EmbeddedResource
+      Include="..\..\dist\netcoreapp3\linux-x64\publish\pack"
+      Link="meta\tools\PackDm\linux-x64\pack" />
+
+  </ItemGroup>
+</Project>
