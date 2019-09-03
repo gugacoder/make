@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net47;netcoreapp3</TargetFrameworks>
+    <AssemblyName>make-bootstrap</AssemblyName>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <OutputPath>..\..\..\build</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Helpers\EmbeddedFiles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="REVISION.txt" />
+  </ItemGroup>
+</Project>

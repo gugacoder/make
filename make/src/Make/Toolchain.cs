@@ -76,23 +76,33 @@ namespace Make
     {
       RequireToolsPath();
 
-#if LINUX
-      var filename = "pack";
+#if WINDOWS
+      var packExe = "pack.exe";
+      var bootstrapExe = "pack-bootstrap.exe";
 #else
-      var filename = "pack.exe";
+      var packFile = "pack";
+      var bootstrapFile = "pack-bootstrap";
 #endif
 
-      var exe = Path.GetFullPath($@"{ToolsFolder}\{filename}");
-
-      if (force || !File.Exists(exe))
+      var bootstrapPath = Path.GetFullPath($@"{ToolsFolder}\{bootstrapExe}");
+      if (force || !File.Exists(bootstrapPath))
       {
-        using (var output = new FileStream(exe, FileMode.Create))
+        using (var output = new FileStream(bootstrapPath, FileMode.Create))
         {
-          EmbeddedFiles.CopyTo(filename, output);
+          EmbeddedFiles.CopyTo(bootstrapExe, output);
         }
       }
 
-      Prompt.PrintInfo("PackDm detectado:\n" + exe);
+      var packPath = Path.GetFullPath($@"{ToolsFolder}\{packExe}");
+      if (force || !File.Exists(packPath))
+      {
+        using (Shell.ChDir(ToolsFolder))
+        {
+          Shell.Run(bootstrapExe);
+        }
+      }
+
+      Prompt.PrintInfo("PackDm detectado:\n" + bootstrapPath);
     }
 
     public static void RequireDevenv(bool force = false)

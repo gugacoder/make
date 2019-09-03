@@ -9,7 +9,7 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <OutputPath>..\..\dist\</OutputPath>
+    <OutputPath>..\..\..\build</OutputPath>
   </PropertyGroup>
 
   <Choose>
@@ -20,8 +20,21 @@
     </When>
     <Otherwise>
       <PropertyGroup>
-        <DefineConstants>WIN</DefineConstants>
+        <DefineConstants>WINDOWS</DefineConstants>
       </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  
+  <Choose>
+    <When Condition="$(Configuration.StartsWith('linux'))">
+      <ItemGroup>
+        <EmbeddedResource Include="..\..\..\build\netcoreapp3\linux-x64\publish\pack-bootstrap" Link="meta\tools\PackDm\linux-x64\pack-bootstrap" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <EmbeddedResource Include="..\..\..\build\net47\win-x64\publish\pack-bootstrap.exe" Link="meta\tools\PackDm\win-x64\pack-bootstrap.exe" />
+      </ItemGroup>
     </Otherwise>
   </Choose>
   
@@ -31,14 +44,4 @@
     <EmbeddedResource Include="meta\tools\NuGet\nuget.exe.gz" />
   </ItemGroup>
 
-  <ItemGroup>
-
-    <EmbeddedResource
-      Include="..\..\dist\net47\win-x64\publish\pack.exe"
-      Link="meta\tools\PackDm\win-x64\pack.exe" />
-    <EmbeddedResource
-      Include="..\..\dist\netcoreapp3\linux-x64\publish\pack"
-      Link="meta\tools\PackDm\linux-x64\pack" />
-
-  </ItemGroup>
 </Project>

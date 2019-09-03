@@ -6,7 +6,7 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <OutputPath>..\..\dist\</OutputPath>
+    <OutputPath>..\..\..\build</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Service\**" />

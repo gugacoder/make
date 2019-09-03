@@ -6,28 +6,28 @@
 :main
   set error=0
   
-  rem win-x64
+  rem Versao para: win-x64
   set cmd=dotnet publish -c Release -f net47 -r win-x64 /p:PublishSingleFile=true /p:PublishReadyToRun=true /p:PublishTrimmed=true
   echo.
   echo.[CMD]%cmd%
   %cmd%
   if errorlevel 1 set error=1
   
-  rem linux-x64
-  set cmd=dotnet publish -c Release -f netcoreapp3 -r linux-x64 /p:PublishSingleFile=true
-  echo.
-  echo.[CMD]%cmd%
-  %cmd%
-  if errorlevel 1 set error=1
-  
-  if %error% == 1 goto :error
-  goto :ok
+  rem Comentado por ora. O DotNet Core 3 ainda não produz um arquivo executavel para linux enxuto.
+  rem // rem Versao para: linux-x64
+  rem // set cmd=dotnet publish -c Release -f netcoreapp3 -r linux-x64 /p:PublishSingleFile=true
+  rem // echo.
+  rem // echo.[CMD]%cmd%
+  rem // %cmd%
+  rem // if errorlevel 1 set error=1
+  rem // 
+  rem // if %error% == 1 goto :error
+  rem // goto :ok
 
 :ok
   echo.
   echo.[OK]Sucesso.
   echo.
-  pause
   exit /b 0
 
 :error
@@ -35,7 +35,4 @@
   echo.[ERR] A compilacao falhou.
   echo.[ERR] Veja erros anteriores para entender a causa.
   echo.
-  pause
   exit /b 1
-  
-main

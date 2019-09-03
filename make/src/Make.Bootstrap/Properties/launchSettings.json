@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Make.Bootstrap": {
+      "commandName": "Project"
+    }
+  }
+}
